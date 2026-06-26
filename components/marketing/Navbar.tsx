@@ -234,41 +234,43 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mobile menu panel */}
+      {/* Mobile menu panel — frosted glass (single lightweight backdrop-blur) */}
       {mobileOpen && (
-        <nav className="max-h-[calc(100vh-4rem)] overflow-y-auto border-t border-white/10 bg-black/95 pb-4 backdrop-blur-md md:hidden">
-          {navigationLinks.map((link, index) =>
-            link.submenu ? (
-              <div key={index} className="py-1">
-                <p className="px-3 pb-1 pt-3 text-xs font-semibold uppercase tracking-wider text-white/40">
+        <nav className="max-h-[calc(100dvh_-_4rem)] overflow-y-auto overscroll-contain border-t border-white/10 bg-black/80 backdrop-blur-md supports-[backdrop-filter]:bg-black/40 md:hidden">
+          <div className="px-1 pt-1">
+            {navigationLinks.map((link, index) =>
+              link.submenu ? (
+                <div key={index} className="py-0.5">
+                  <p className="px-3 pb-1 pt-2.5 text-xs font-semibold uppercase tracking-wider text-white/40">
+                    {link.label}
+                  </p>
+                  {link.items.map((item, itemIndex) => (
+                    <a
+                      key={itemIndex}
+                      href={item.href}
+                      onClick={closeMobile}
+                      className="block rounded-md px-3 py-2 text-sm font-medium text-white/80 hover:bg-white/10 hover:text-white"
+                    >
+                      {item.label}
+                    </a>
+                  ))}
+                </div>
+              ) : (
+                <a
+                  key={index}
+                  href={link.href}
+                  onClick={closeMobile}
+                  className="block rounded-md px-3 py-2.5 text-base font-medium text-white/90 hover:bg-white/10 hover:text-white"
+                >
                   {link.label}
-                </p>
-                {link.items.map((item, itemIndex) => (
-                  <a
-                    key={itemIndex}
-                    href={item.href}
-                    onClick={closeMobile}
-                    className="block rounded-md px-3 py-2 text-sm font-medium text-white/80 hover:bg-white/10 hover:text-white"
-                  >
-                    {item.label}
-                  </a>
-                ))}
-              </div>
-            ) : (
-              <a
-                key={index}
-                href={link.href}
-                onClick={closeMobile}
-                className="block rounded-md px-3 py-2.5 text-base font-medium text-white/90 hover:bg-white/10 hover:text-white"
-              >
-                {link.label}
-              </a>
-            )
-          )}
+                </a>
+              )
+            )}
+          </div>
 
-          <div className="my-2 h-px bg-white/10" />
-
-          <div className="flex flex-col gap-2 px-1 pt-1">
+          {/* CTAs pinned to the bottom so the Safari toolbar never hides them.
+              Near-opaque (no extra blur) to keep it cheap and hide scrolled content. */}
+          <div className="sticky bottom-0 flex flex-col gap-2 border-t border-white/10 bg-black/90 px-2 pb-[calc(env(safe-area-inset-bottom)_+_0.75rem)] pt-3">
             <Link
               href="/login"
               onClick={closeMobile}

@@ -78,7 +78,7 @@ const NavigationMenuContent = React.forwardRef<
   <NavigationMenuPrimitive.Content
     ref={ref}
     className={cn(
-      "absolute left-0 top-full z-50 mt-1.5 overflow-hidden rounded-md border border-white/10 bg-popover text-popover-foreground shadow-lg data-[motion^=from-]:animate-in data-[motion^=to-]:animate-out data-[motion^=from-]:fade-in data-[motion^=to-]:fade-out data-[motion=from-end]:slide-in-from-right-52 data-[motion=from-start]:slide-in-from-left-52 data-[motion=to-end]:slide-out-to-right-52 data-[motion=to-start]:slide-out-to-left-52 data-[state=open]:zoom-in-90 data-[state=closed]:zoom-out-95",
+      "absolute left-0 top-full z-50 mt-1.5 overflow-hidden rounded-md border border-white/10 bg-popover text-popover-foreground shadow-lg backdrop-blur-md supports-[backdrop-filter]:bg-popover/70 data-[motion^=from-]:animate-in data-[motion^=to-]:animate-out data-[motion^=from-]:fade-in data-[motion^=to-]:fade-out data-[motion=from-end]:slide-in-from-right-52 data-[motion=from-start]:slide-in-from-left-52 data-[motion=to-end]:slide-out-to-right-52 data-[motion=to-start]:slide-out-to-left-52 data-[state=open]:zoom-in-90 data-[state=closed]:zoom-out-95",
       className
     )}
     {...props}
